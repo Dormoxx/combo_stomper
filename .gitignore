@@ -1,0 +1,6 @@
+.import/*
+assets/*
+*.import
+*.translation
+export_presets.cfg
+.mono/*
