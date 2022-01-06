@@ -1,18 +1,33 @@
 extends Actor
 
-export var stomp_impulse:= 1000
+export var stomp_impulse:= 1250
+var stomp_increment:= 250
+var combo_pitch
 
 var is_midair = false
 
+func _ready() -> void:
+	PlayerData.connect("combo_increased", self, "peggle_bongs")
+	PlayerData.combo_count = 0
+
 func _on_EnemyDetectorArea_area_entered(area: Area2D) -> void:
 	_velocity = calc_stomp_velocity(_velocity, stomp_impulse)
-	PlayerData.combo_count += 1
-	
 
 func _on_EnemyDetectorArea_body_entered(body: Node) -> void:
 	die()
 
+func peggle_bongs():
+	if PlayerData.combo_count <= 1:
+		combo_pitch = 1.0
+	if PlayerData.combo_count > 1:
+		combo_pitch = (1 + (((PlayerData.combo_count) / 10.0) - 0.1))
+	$AudioCombo.pitch_scale = combo_pitch
+	$AudioCombo.play()
+	
+
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_released("reset"):
+		get_tree().reload_current_scene()
 	var jump_interrupt:= Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction:= get_direction()
 	_velocity = calc_movement(_velocity, direction, _speed, jump_interrupt, delta)
@@ -29,7 +44,7 @@ func calc_movement(velocity: Vector2, direction: Vector2, speed: Vector2, jump_c
 	new_velocity.x = speed.x * direction.x
 	
 	#override jump behavior (-1.0 from get_input())
-	if direction.y == -1.0:
+	if direction.y == -1.0 and !is_midair:
 		new_velocity.y = speed.y * direction.y
 		is_midair = true
 	
@@ -50,10 +65,10 @@ func calc_stomp_velocity(velocity: Vector2, impulse: float) -> Vector2:
 	var new_vel:= velocity
 	#if new_vel.y > 0.0: #only apply stomp if player is falling
 	
-	if PlayerData.combo_count == 0:
+	if PlayerData.combo_count == 0 or 1:
 		new_vel.y = -(impulse)
-	if PlayerData.combo_count > 0:
-		new_vel.y = -((impulse/2) * PlayerData.combo_count)
+	if PlayerData.combo_count >= 2:
+		new_vel.y = -(impulse + (PlayerData.combo_count * stomp_increment))
 	return new_vel
 
 func verify_combo():

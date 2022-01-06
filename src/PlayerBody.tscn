@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/player.png" type="Texture" id=1]
 [ext_resource path="res://src/scripts/PlayerBody.gd" type="Script" id=2]
+[ext_resource path="res://assets/peggle-bounce.ogg" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 41 )
@@ -12,7 +13,7 @@ extents = Vector2( 44, 44 )
 [node name="PlayerBody" type="KinematicBody2D"]
 collision_mask = 4
 script = ExtResource( 2 )
-_speed = Vector2( 500, 1000 )
+_speed = Vector2( 750, 1000 )
 
 [node name="PlayerSprite" type="Sprite" parent="."]
 position = Vector2( 0, -48 )
@@ -39,6 +40,9 @@ monitorable = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 0, -44 )
 shape = SubResource( 2 )
+
+[node name="AudioCombo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="area_entered" from="EnemyDetectorArea" to="." method="_on_EnemyDetectorArea_area_entered"]
 [connection signal="body_entered" from="EnemyDetectorArea" to="." method="_on_EnemyDetectorArea_body_entered"]

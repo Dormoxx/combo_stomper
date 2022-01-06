@@ -3,6 +3,7 @@ extends Node
 signal score_updated
 signal player_died
 signal combo_updated
+signal combo_increased
 
 var score:= 0 setget set_score
 var deaths:= 0 setget set_deaths
@@ -23,6 +24,11 @@ func set_deaths(value: int):
 
 func set_combo_count(value: int):
 	combo_count = value
+	emit_signal("combo_updated")
+
+func increase_combo():
+	combo_count += 1
+	emit_signal("combo_increased")
 	emit_signal("combo_updated")
 
 func get_combo_count() -> int:
