@@ -3,8 +3,7 @@ tool
 
 export var next_scene: PackedScene
 
-func _on_body_entered(body: Node) -> void:
-	print("body entered")
+func _on_body_entered(_body: Node) -> void:
 	teleport()
 
 func _get_configuration_warning() -> String:

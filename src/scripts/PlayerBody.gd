@@ -3,6 +3,8 @@ extends Actor
 export var stomp_impulse:= 1250
 var stomp_increment:= 250
 var combo_pitch
+var scaled_speed: Vector2 = _speed
+var speed_scale = 100
 
 var is_midair = false
 
@@ -10,24 +12,17 @@ func _ready() -> void:
 	PlayerData.connect("combo_increased", self, "peggle_bongs")
 	PlayerData.combo_count = 0
 
-func _on_EnemyDetectorArea_area_entered(area: Area2D) -> void:
+func _on_EnemyDetectorArea_area_entered(_area: Area2D) -> void:
 	_velocity = calc_stomp_velocity(_velocity, stomp_impulse)
 
-func _on_EnemyDetectorArea_body_entered(body: Node) -> void:
+func _on_EnemyDetectorArea_body_entered(_body: Node) -> void:
 	die()
 
-func peggle_bongs():
-	if PlayerData.combo_count <= 1:
-		combo_pitch = 1.0
-	if PlayerData.combo_count > 1:
-		combo_pitch = (1 + (((PlayerData.combo_count) / 10.0) - 0.1))
-	$AudioCombo.pitch_scale = combo_pitch
-	$AudioCombo.play()
-	
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("reset"):
 		get_tree().reload_current_scene()
+	
 	var jump_interrupt:= Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction:= get_direction()
 	_velocity = calc_movement(_velocity, direction, _speed, jump_interrupt, delta)
@@ -41,7 +36,10 @@ func get_direction() -> Vector2:
 
 func calc_movement(velocity: Vector2, direction: Vector2, speed: Vector2, jump_canceled: bool, delta: float) -> Vector2:
 	var new_velocity = velocity
-	new_velocity.x = speed.x * direction.x
+	if PlayerData.combo_count <= 1:
+		new_velocity.x = speed.x * direction.x
+	else:
+		new_velocity.x = scaled_speed.x * direction.x
 	
 	#override jump behavior (-1.0 from get_input())
 	if direction.y == -1.0 and !is_midair:
@@ -69,11 +67,22 @@ func calc_stomp_velocity(velocity: Vector2, impulse: float) -> Vector2:
 		new_vel.y = -(impulse)
 	if PlayerData.combo_count >= 2:
 		new_vel.y = -(impulse + (PlayerData.combo_count * stomp_increment))
+		scaled_speed.x += (speed_scale * PlayerData.combo_count)
+		scaled_speed.y += (speed_scale * PlayerData.combo_count)
 	return new_vel
 
 func verify_combo():
 	if !is_midair:
 		PlayerData.combo_count = 0
+
+func peggle_bongs():
+	if PlayerData.combo_count <= 1:
+		combo_pitch = 1.0
+	if PlayerData.combo_count > 1:
+		combo_pitch = (1 + (((PlayerData.combo_count) / 10.0) - 0.1))
+	$AudioCombo.pitch_scale = combo_pitch
+	$AudioCombo.play()
+	
 
 func die():
 	PlayerData.deaths += 1

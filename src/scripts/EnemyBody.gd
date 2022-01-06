@@ -6,6 +6,7 @@ onready var stompArea = $StompArea
 onready var stompColl = $StompArea/StompCollider
 export var scoreValue:= 100
 func _ready() -> void:
+	_speed.x = 350
 	_velocity.x = -_speed.x
 
 func _on_StompArea_body_entered(body: Node) -> void:
