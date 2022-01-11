@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://src/PlayerBody.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/EnemyBody.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/background.png" type="Texture" id=4]
+[ext_resource path="res://src/UI/UserInterface.tscn" type="PackedScene" id=5]
+
+[node name="LevelTemplate" type="Node2D"]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 69
+
+[node name="UserInterface" parent="UILayer" instance=ExtResource( 5 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -69
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 80, 80 )
+collision_layer = 4
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -196611, 0, 0, -196610, 0, 0, -131075, 0, 0, -131074, 0, 0, -65539, 0, 0, -65538, 0, 0, -3, 0, 0, -2, 0, 0, 65533, 0, 0, 65534, 0, 0, 131069, 0, 0, 131070, 0, 0, 196605, 0, 0, 196606, 0, 0, 262141, 0, 0, 262142, 0, 0, 327677, 0, 0, 327678, 0, 0, 393213, 0, 0, 393214, 0, 0, 458749, 0, 0, 458750, 0, 0, 524285, 0, 0, 524286, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 655357, 0, 0, 655358, 0, 0, 655359, 0, 0, 589824, 0, 0, 720893, 0, 0, 720894, 0, 0, 720895, 0, 0, 655360, 0, 0, 655384, 0, 0, 786429, 0, 0, 786430, 0, 0, 786431, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0, 720916, 0, 0, 720917, 0, 0, 720918, 0, 0, 720919, 0, 0, 720920, 0, 0, 851965, 0, 0, 851966, 0, 0, 851967, 0, 0, 786432, 0, 0, 786433, 0, 0, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 786440, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786444, 0, 0, 786445, 0, 0, 786446, 0, 0, 786447, 0, 0, 786448, 0, 0, 786449, 0, 0, 786450, 0, 0, 786451, 0, 0, 786452, 0, 0, 786453, 0, 0, 786454, 0, 0, 786455, 0, 0, 786456, 0, 0, 917501, 0, 0, 917502, 0, 0, 917503, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 851984, 0, 0, 851985, 0, 0, 851986, 0, 0, 851987, 0, 0, 851988, 0, 0, 851989, 0, 0, 851990, 0, 0, 851991, 0, 0, 851992, 0, 0 )
+
+[node name="PlayerBody" parent="." instance=ExtResource( 2 )]
+position = Vector2( -5, 600 )
+
+[node name="RemoteCameraTransform" parent="PlayerBody" index="2"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="EnemyBody" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 305, 866 )
+
+[node name="EnemyBody8" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 164, 864 )
+
+[node name="EnemyBody2" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 627, 873 )
+
+[node name="EnemyBody3" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 876, 873 )
+
+[node name="EnemyBody4" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 1117, 873 )
+
+[node name="EnemyBody5" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 1360, 873 )
+
+[node name="EnemyBody6" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 1600, 873 )
+
+[node name="EnemyBody7" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 1841, 873 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -5, 600 )
+current = true
+zoom = Vector2( 2, 2 )
+
+[editable path="PlayerBody"]

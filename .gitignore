@@ -4,4 +4,5 @@ assets/*
 *.translation
 export_presets.cfg
 .mono/*
-build/*
+v1/build/*
+v1/assets/*
