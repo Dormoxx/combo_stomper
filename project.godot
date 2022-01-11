@@ -21,12 +21,16 @@ _global_script_class_icons={
 [application]
 
 config/name="Combo Stomper"
-run/main_scene="res://src/UI/MainScreen.tscn"
+run/main_scene="res://src/Levels/LevelTemplate.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 PlayerData="*res://src/Autoload/PlayerData.tscn"
+
+[display]
+
+window/size/always_on_top=true
 
 [gdnative]
 

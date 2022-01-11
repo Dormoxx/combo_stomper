@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/scripts/EnemyBody.gd" type="Script" id=1]
-[ext_resource path="res://assets/enemy.png" type="Texture" id=2]
+[ext_resource path="res://assets/player.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 36.5, 38 )
+extents = Vector2( 48, 38 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 53, 10 )
+extents = Vector2( 54, 10 )
 
 [node name="EnemyBody" type="KinematicBody2D"]
 collision_mask = 5
@@ -19,16 +19,16 @@ texture = ExtResource( 2 )
 
 [node name="EnemyCollider" type="CollisionShape2D" parent="."]
 modulate = Color( 0.419608, 0.137255, 0.137255, 1 )
-position = Vector2( -0.5, -38 )
+position = Vector2( 0, -38 )
 shape = SubResource( 1 )
 
-[node name="StompArea" type="Area2D" parent="."]
-position = Vector2( 0, -76 )
+[node name="StompDetector" type="Area2D" parent="."]
+position = Vector2( 0, -73 )
 collision_layer = 2
 
-[node name="StompCollider" type="CollisionShape2D" parent="StompArea"]
-modulate = Color( 0.921569, 1, 0.368627, 1 )
-position = Vector2( 0, -10 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
+modulate = Color( 0.396078, 0.0666667, 0.694118, 1 )
+position = Vector2( 0, -13 )
 shape = SubResource( 2 )
 
-[connection signal="body_entered" from="StompArea" to="." method="_on_StompArea_body_entered"]
+[connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetectorArea_body_entered"]

@@ -41,6 +41,9 @@ tile_data = PoolIntArray( -1572867, 0, 0, -1572866, 0, 0, -1572865, 0, 0, -16383
 [node name="PlayerBody" parent="." instance=ExtResource( 2 )]
 position = Vector2( 157, 605 )
 
+[node name="RemoteCameraTransform" parent="PlayerBody" index="2"]
+remote_path = NodePath("../../Camera2D")
+
 [node name="Enemies" type="Node" parent="."]
 
 [node name="EnemyBody" parent="Enemies" instance=ExtResource( 3 )]
@@ -68,3 +71,10 @@ position = Vector2( 677, 866 )
 position = Vector2( 1569, -1618 )
 collision_mask = 7
 next_scene = ExtResource( 7 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 157, 605 )
+current = true
+zoom = Vector2( 2, 2 )
+
+[editable path="PlayerBody"]
