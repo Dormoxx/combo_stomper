@@ -9,7 +9,7 @@ var can_jump: bool = true
 var can_dash: bool = true
 var is_dashing: bool = false
 var dash_direction: Vector2
-var dash_speed:= Vector2(4500, base_speed.y)
+var dash_speed:= base_speed * 1.5
 
 var _velocity:= Vector2.ZERO
 
@@ -36,7 +36,8 @@ func get_direction() -> Vector2:
 func calc_movement(velocity: Vector2, direction: Vector2, speed: Vector2, jump_canceled: bool, delta: float) -> Vector2:
 	var new_vel = velocity
 	
-	new_vel.x = speed.x * direction.x
+	if !is_dashing:
+		new_vel.x = speed.x * direction.x
 	
 	if !is_on_floor() and !is_dashing:
 		new_vel.y += _gravity * delta
@@ -45,10 +46,8 @@ func calc_movement(velocity: Vector2, direction: Vector2, speed: Vector2, jump_c
 		new_vel.y = speed.y * direction.y
 		can_jump = false
 	
-	
 	if jump_canceled:
 		new_vel.y = 0
-	
 	
 	if new_vel.y > 0.0: #fast fall
 		if Input.is_action_just_pressed("down"):
@@ -56,12 +55,11 @@ func calc_movement(velocity: Vector2, direction: Vector2, speed: Vector2, jump_c
 	
 	new_vel = dash(new_vel)
 	
-	
 	return new_vel
 
 func dash(velocity: Vector2):
-	dash_direction = Vector2.ZERO
 	if !is_dashing:
+		dash_direction = Vector2.ZERO
 		if Input.is_action_just_pressed("dash") and can_dash:
 			if Input.is_action_pressed("left"):
 				dash_direction.x = -1
