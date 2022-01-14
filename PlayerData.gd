@@ -1,4 +1,4 @@
-extends Resource
+extends Node
 
 signal combo_updated
 signal combo_increased
@@ -12,6 +12,7 @@ func increase_combo():
 
 func set_current_combo(value: int):
 	current_combo = value
+	emit_signal("combo_updated")
 
 func get_current_combo() -> int:
 	return current_combo
