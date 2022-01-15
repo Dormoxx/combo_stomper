@@ -9,7 +9,7 @@ func _ready() -> void:
 	_velocity.x = -_speed.x
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
-	if position.y > area.position.y:
+	if global_position.y > area.global_position.y:
 		die()
 
 

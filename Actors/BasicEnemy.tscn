@@ -13,10 +13,9 @@ radius = 16.9999
 height = 62.0002
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 43, 26.5 )
+extents = Vector2( 43, 31 )
 
 [node name="BasicEnemy" type="KinematicBody2D"]
-collision_layer = 0
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -45,8 +44,15 @@ collision_mask = 4
 
 [node name="Collider" parent="Hitbox" index="0"]
 modulate = Color( 0.980392, 0, 0, 1 )
-position = Vector2( 0, -31.5 )
+position = Vector2( 0, -27 )
 shape = SubResource( 3 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
+position = Vector2( 0, -43 )
+scale = Vector2( 5.2, 5.1 )
+process_parent = true
+physics_process_parent = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 

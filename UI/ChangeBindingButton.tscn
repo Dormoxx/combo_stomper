@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/ChangeBindingButton.gd" type="Script" id=1]
+
+[node name="ChangeBindingButton" type="Button"]
+margin_right = 128.0
+margin_bottom = 36.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 128, 36 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "%s"
+align = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

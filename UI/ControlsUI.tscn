@@ -1,10 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/background.png" type="Texture" id=1]
+[ext_resource path="res://UI/MainMenuButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/UI_Theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/font_title.tres" type="DynamicFont" id=4]
+[ext_resource path="res://UI/ChangeBindingButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/ControlsUI.gd" type="Script" id=6]
 
 [node name="ControlsUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -17,3 +24,145 @@ stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MenuButton" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -181.0
+margin_top = -68.0
+margin_right = 181.0
+margin_bottom = 0.0
+
+[node name="MoveTitleLabel" type="Label" parent="."]
+margin_left = 134.0
+margin_top = 14.0
+margin_right = 412.0
+margin_bottom = 71.0
+custom_fonts/font = ExtResource( 4 )
+text = "Movement:"
+
+[node name="Movement" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 95.0
+margin_top = -177.0
+margin_right = 449.0
+margin_bottom = 177.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Up" type="HBoxContainer" parent="Movement"]
+margin_right = 354.0
+margin_bottom = 37.0
+
+[node name="Label" type="Label" parent="Movement/Up"]
+margin_top = 3.0
+margin_right = 44.0
+margin_bottom = 34.0
+text = "UP:"
+
+[node name="MarginContainer" type="MarginContainer" parent="Movement/Up"]
+margin_left = 48.0
+margin_right = 112.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 64, 37 )
+
+[node name="UpButton" parent="Movement/Up" instance=ExtResource( 5 )]
+margin_left = 116.0
+margin_right = 244.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+
+[node name="Down" type="HBoxContainer" parent="Movement"]
+margin_top = 41.0
+margin_right = 354.0
+margin_bottom = 78.0
+
+[node name="Label" type="Label" parent="Movement/Down"]
+margin_top = 3.0
+margin_right = 94.0
+margin_bottom = 34.0
+text = "DOWN:"
+
+[node name="MarginContainer" type="MarginContainer" parent="Movement/Down"]
+margin_left = 98.0
+margin_right = 112.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 14, 37 )
+
+[node name="ChangeBindingButton" parent="Movement/Down" instance=ExtResource( 5 )]
+margin_left = 116.0
+margin_right = 244.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+
+[node name="Left" type="HBoxContainer" parent="Movement"]
+margin_top = 82.0
+margin_right = 354.0
+margin_bottom = 119.0
+
+[node name="Label" type="Label" parent="Movement/Left"]
+margin_top = 3.0
+margin_right = 68.0
+margin_bottom = 34.0
+text = "LEFT:"
+
+[node name="MarginContainer" type="MarginContainer" parent="Movement/Left"]
+margin_left = 72.0
+margin_right = 112.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 40, 37 )
+
+[node name="ChangeBindingButton" parent="Movement/Left" instance=ExtResource( 5 )]
+margin_left = 116.0
+margin_right = 244.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+
+[node name="Right" type="HBoxContainer" parent="Movement"]
+margin_top = 123.0
+margin_right = 354.0
+margin_bottom = 160.0
+
+[node name="Label" type="Label" parent="Movement/Right"]
+margin_top = 3.0
+margin_right = 85.0
+margin_bottom = 34.0
+text = "RIGHT:"
+
+[node name="MarginContainer" type="MarginContainer" parent="Movement/Right"]
+margin_left = 89.0
+margin_right = 112.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 23, 37 )
+
+[node name="ChangeBindingButton" parent="Movement/Right" instance=ExtResource( 5 )]
+margin_left = 116.0
+margin_right = 244.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+
+[node name="RebindOverlay" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0, 1, 0.490196 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="RebindOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -215.0
+margin_top = -15.5
+margin_right = 215.0
+margin_bottom = 15.5
+text = "Press the button you want to use"
+
+[connection signal="button_up" from="Movement/Up/UpButton" to="." method="_on_UpButton_button_up"]

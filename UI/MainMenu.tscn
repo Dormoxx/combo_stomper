@@ -58,11 +58,12 @@ margin_bottom = 79.0
 size_flags_vertical = 3
 text = "Play"
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="ControlsButton" type="Button" parent="VBoxContainer"]
 margin_top = 83.0
 margin_right = 325.0
 margin_bottom = 162.0
 size_flags_vertical = 3
+text = "Controls"
 
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource( 4 )]
 anchor_left = 0.0
@@ -75,3 +76,4 @@ margin_right = 325.0
 margin_bottom = 245.0
 
 [connection signal="button_up" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_button_up"]
+[connection signal="button_up" from="VBoxContainer/ControlsButton" to="." method="_on_ControlsButton_button_up"]

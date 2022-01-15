@@ -27,20 +27,26 @@ func set_paused(value: bool):
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		self.paused = !paused
+		$CanJump.visible = !$CanJump.visible
+		$CanDash.visible = !$CanDash.visible
 		tree.set_input_as_handled()
 
 
 func on_jumped():
-	JumpUI.modulate = Color(1, 0, 0, 1)
+	#JumpUI.modulate = Color(0, 0, 0, 1)
+	JumpUI.visible = false
 
 func on_jump_refresh():
-	JumpUI.modulate = Color(0, 1, 0, 1)
+	#JumpUI.modulate = Color(1, 1, 1, 1)
+	JumpUI.visible = true
 
 func on_dashed():
-	DashUI.modulate = Color(1, 0, 0, 1)
+	#DashUI.modulate = Color(0, 0, 0, 1)
+	DashUI.visible = false
 
 func on_dash_refresh():
-	DashUI.modulate = Color(0, 1, 0, 1)
+	#DashUI.modulate = Color(1, 1, 1, 1)
+	DashUI.visible = true
 
 
 func update_combo_label():

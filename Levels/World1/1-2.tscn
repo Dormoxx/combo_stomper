@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Actors/BasicEnemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/InGameUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/background.png" type="Texture" id=5]
+[ext_resource path="res://assets/font_title.tres" type="DynamicFont" id=6]
+[ext_resource path="res://PortalArea.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Levels/World1/1-3.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Levels/World1/1-2.gd" type="Script" id=9]
+
+[node name="1-2" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 69
+
+[node name="InGameUI" parent="UILayer" instance=ExtResource( 4 )]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 80, 80 )
+format = 1
+tile_data = PoolIntArray( -1703937, 0, 0, -1769448, 0, 0, -1638401, 0, 0, -1703912, 0, 0, -1572865, 0, 0, -1638376, 0, 0, -1507329, 0, 0, -1572840, 0, 0, -1441793, 0, 0, -1507304, 0, 0, -1376257, 0, 0, -1441768, 0, 0, -1310721, 0, 0, -1376232, 0, 0, -1245185, 0, 0, -1310696, 0, 0, -1179649, 0, 0, -1245181, 0, 0, -1245175, 0, 0, -1245169, 0, 0, -1245164, 0, 0, -1245160, 0, 0, -1114113, 0, 0, -1179645, 0, 0, -1179644, 0, 0, -1179643, 0, 0, -1179642, 0, 0, -1179641, 0, 0, -1179640, 0, 0, -1179639, 0, 0, -1179633, 0, 0, -1179632, 0, 0, -1179631, 0, 0, -1179630, 0, 0, -1179629, 0, 0, -1179628, 0, 0, -1179624, 0, 0, -1048577, 0, 0, -1114088, 0, 0, -983041, 0, 0, -1048552, 0, 0, -917505, 0, 0, -983016, 0, 0, -851969, 0, 0, -917480, 0, 0, -786433, 0, 0, -851944, 0, 0, -720897, 0, 0, -786408, 0, 0, -655361, 0, 0, -720872, 0, 0, -589825, 0, 0, -655350, 0, 0, -655346, 0, 0, -655336, 0, 0, -524289, 0, 0, -589814, 0, 0, -589813, 0, 0, -589812, 0, 0, -589811, 0, 0, -589810, 0, 0, -589800, 0, 0, -458753, 0, 0, -524285, 0, 0, -524276, 0, 0, -524268, 0, 0, -524264, 0, 0, -393217, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -458749, 0, 0, -458740, 0, 0, -458732, 0, 0, -458731, 0, 0, -458730, 0, 0, -458729, 0, 0, -458728, 0, 0, -327681, 0, 0, -393204, 0, 0, -393192, 0, 0, -262145, 0, 0, -327668, 0, 0, -327656, 0, 0, -196609, 0, 0, -262132, 0, 0, -262120, 0, 0, -131073, 0, 0, -196599, 0, 0, -196596, 0, 0, -196593, 0, 0, -196584, 0, 0, -65537, 0, 0, -131063, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -131059, 0, 0, -131058, 0, 0, -131057, 0, 0, -131048, 0, 0, -1, 0, 0, -65524, 0, 0, -65512, 0, 0, 65535, 0, 0, 12, 0, 0, 24, 0, 0, 131071, 0, 0, 65548, 0, 0, 65560, 0, 0, 196607, 0, 0, 131084, 0, 0, 131096, 0, 0, 262143, 0, 0, 196612, 0, 0, 196620, 0, 0, 196628, 0, 0, 196632, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262156, 0, 0, 262164, 0, 0, 262165, 0, 0, 262166, 0, 0, 262167, 0, 0, 262168, 0, 0, 393215, 0, 0, 327704, 0, 0, 458751, 0, 0, 393240, 0, 0, 524287, 0, 0, 458776, 0, 0, 589823, 0, 0, 524312, 0, 0, 655359, 0, 0, 589848, 0, 0, 720895, 0, 0, 655384, 0, 0, 786431, 0, 0, 720920, 0, 0, 851967, 0, 0, 786436, 0, 0, 786440, 0, 0, 786444, 0, 0, 786448, 0, 0, 786452, 0, 0, 786456, 0, 0, 917503, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 851984, 0, 0, 851985, 0, 0, 851986, 0, 0, 851987, 0, 0, 851988, 0, 0, 851989, 0, 0, 851990, 0, 0, 851991, 0, 0, 851992, 0, 0, 983039, 0, 0, 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 917520, 0, 0, 917521, 0, 0, 917522, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 917527, 0, 0, 917528, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 82, 966 )
+
+[node name="CameraRemoteTransform" parent="Player" index="3"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 82, 966 )
+zoom = Vector2( 2, 2 )
+limit_left = -77
+limit_right = 2004
+limit_bottom = 1197
+smoothing_speed = 8.0
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2( 1684, 446 )
+
+[node name="BasicEnemy" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( -1179, 537 )
+
+[node name="BasicEnemy6" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( -1499, -183 )
+
+[node name="BasicEnemy7" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 125, -194 )
+
+[node name="BasicEnemy8" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( -579, -661 )
+
+[node name="BasicEnemy9" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( -797, -653 )
+
+[node name="BasicEnemy10" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( -1546, -1065 )
+
+[node name="BasicEnemy2" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( -842, 521 )
+
+[node name="BasicEnemy3" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( -522, 529 )
+
+[node name="BasicEnemy4" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( -194, 521 )
+
+[node name="BasicEnemy5" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 142, -1055 )
+
+[node name="BasicEnemy11" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( -690, -1219 )
+
+[node name="BasicEnemy12" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( -1188, -1955 )
+
+[node name="BasicEnemy13" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( -240, -1959 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -69
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 1083.0
+margin_right = 741.0
+margin_bottom = 1143.0
+custom_fonts/font = ExtResource( 6 )
+text = "Level 1-2: Ascend the Tower"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PortalArea" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1004, -2098 )
+collision_layer = 1
+collision_mask = 1
+next_scene = ExtResource( 8 )
+
+[editable path="Player"]
+[editable path="Player/Hurtbox"]
+[editable path="Player/Hitbox"]
