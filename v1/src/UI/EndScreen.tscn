@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/scripts/EndScreen.gd" type="Script" id=1]
+[ext_resource path="res://assets/bgm.ogg" type="AudioStream" id=2]
+[ext_resource path="res://src/UI/UI_Theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/background.png" type="Texture" id=4]
+[ext_resource path="res://src/UI/QuitButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UI/ChangeSceneButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/font_title.tres" type="DynamicFont" id=7]
+
+[node name="EndScreen" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 896.0
+margin_bottom = 480.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -385.5
+margin_top = 113.0
+margin_right = 385.5
+margin_bottom = 170.0
+custom_fonts/font = ExtResource( 7 )
+text = "thank you for playing my gaem:)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -137.5
+margin_top = -39.0
+margin_right = 137.5
+margin_bottom = 39.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" parent="VBoxContainer2" instance=ExtResource( 6 )]
+margin_bottom = 75.0
+text = "Back to Menu"
+next_scene_path = "res://src/UI/MainScreen.tscn"
+
+[node name="QuitButton" parent="VBoxContainer2" instance=ExtResource( 5 )]
+margin_top = 79.0
+margin_bottom = 116.0
+
+[node name="GameOverStatsLabel" type="Label" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -248.0
+margin_top = -99.0
+text = "Final Score: %s
+Died %s times
+Highest Combo: %s"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -15.0
